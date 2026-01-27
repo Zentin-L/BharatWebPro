@@ -1,0 +1,308 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - Business owners, admins, sales team
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  phone         String?   @unique
+  password      String?
+  role          UserRole  @default(CLIENT)
+  
+  // Relations
+  businesses    Business[]
+  websiteOrders WebsiteOrder[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@index([email])
+  @@index([phone])
+}
+
+enum UserRole {
+  CLIENT
+  ADMIN
+  SALES
+  SUPPORT
+}
+
+// Business model - Scraped businesses from Google Maps, JustDial, etc
+model Business {
+  id            String    @id @default(cuid())
+  name          String
+  phone         String    @unique
+  email         String?
+  address       String
+  city          String
+  state         String
+  type          BusinessType
+  
+  // Contact info
+  whatsapp      String?
+  
+  // Status tracking
+  status        BusinessStatus @default(LEAD)
+  source        String    // "google_maps", "justdial", etc
+  
+  // Owner info
+  owner         User?     @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  ownerId       String?
+  
+  // Website
+  website       Website?
+  
+  // Scraping metadata
+  scrapedAt     DateTime  @default(now())
+  lastContacted DateTime?
+  notes         String?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@index([city])
+  @@index([type])
+  @@index([status])
+  @@index([ownerId])
+}
+
+enum BusinessType {
+  KIRANA
+  RESTAURANT
+  CLINIC
+  SALON
+  COACHING
+  REAL_ESTATE
+  TRAVEL_AGENCY
+  LEGAL
+  TAX_CONSULTANT
+  MEDICAL_STORE
+  ELECTRONICS
+  CLOTHING
+  JEWELLERY
+  GYM
+  OTHER
+}
+
+enum BusinessStatus {
+  LEAD          // Recently scraped, not contacted
+  CONTACTED     // Contacted but no response
+  INTERESTED    // Interested in service
+  NEGOTIATING   // In negotiation phase
+  ORDER_PLACED  // Placed an order
+  ACTIVE        // Website is live
+  CHURNED       // No longer interested
+}
+
+// Website model - Generated websites
+model Website {
+  id            String    @id @default(cuid())
+  
+  business      Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  businessId    String    @unique
+  
+  // Domain info
+  domain        String    @unique
+  subdomain     String    @unique
+  
+  // Website details
+  title         String
+  tagline       String
+  description   String
+  template      String    // Template type slug
+  
+  // Status
+  status        WebsiteStatus @default(DRAFT)
+  isPublished   Boolean   @default(false)
+  
+  // Multi-language support
+  languages     String[]  @default(["en"])
+  
+  // Features
+  hasWhatsApp   Boolean   @default(false)
+  hasEcommerce  Boolean   @default(false)
+  
+  // Pages
+  pages         Page[]
+  
+  // Analytics
+  views         Int       @default(0)
+  
+  // Content
+  customContent Json?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  publishedAt   DateTime?
+  
+  @@index([businessId])
+  @@index([status])
+}
+
+enum WebsiteStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+// Page model - Individual pages within a website
+model Page {
+  id            String    @id @default(cuid())
+  
+  website       Website   @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  websiteId     String
+  
+  // Page info
+  title         String
+  slug          String
+  content       Json      // Page content structure
+  
+  // SEO
+  seoTitle      String?
+  seoDescription String?
+  seoKeywords   String?
+  
+  // Status
+  isPublished   Boolean   @default(false)
+  order         Int       @default(0)
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@unique([websiteId, slug])
+  @@index([websiteId])
+}
+
+// Template model - Website templates for different business types
+model Template {
+  id            String    @id @default(cuid())
+  
+  name          String
+  category      BusinessType
+  description   String
+  
+  // Template structure
+  structure     Json      // Template structure definition
+  defaultPages  Json      // Default pages included
+  
+  isActive      Boolean   @default(true)
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@unique([name, category])
+}
+
+// WebsiteOrder model - Purchase orders for websites
+model WebsiteOrder {
+  id            String    @id @default(cuid())
+  
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  
+  // Order details
+  plan          PricingPlan
+  amount        Float
+  amountGST     Float
+  
+  // Payment
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentMethod String?
+  razorpayOrderId String?
+  transactionId String?
+  
+  // Fulfillment
+  status        OrderStatus @default(PENDING)
+  
+  // Timeline
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  completedAt   DateTime?
+  
+  @@index([userId])
+  @@index([paymentStatus])
+}
+
+enum PricingPlan {
+  BASIC
+  PREMIUM
+  ENTERPRISE
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum OrderStatus {
+  PENDING
+  GENERATING
+  REVIEW
+  APPROVED
+  PUBLISHED
+  CANCELLED
+}
+
+// ScraperLog model - Track scraping activities
+model ScraperLog {
+  id            String    @id @default(cuid())
+  
+  city          String
+  businessType  String
+  source        String    // "google_maps", "justdial", etc
+  
+  // Results
+  found         Int       @default(0)
+  saved         Int       @default(0)
+  errors        Int       @default(0)
+  
+  // Metadata
+  duration      Int       // in milliseconds
+  status        String    // "success", "failed", "partial"
+  errorMessage  String?
+  
+  createdAt     DateTime  @default(now())
+  
+  @@index([createdAt])
+  @@index([city])
+}
+
+// ContactRequest model - General inquiries
+model ContactRequest {
+  id            String    @id @default(cuid())
+  
+  name          String
+  email         String
+  phone         String?
+  businessName  String?
+  message       String
+  
+  status        ContactStatus @default(NEW)
+  respondedAt   DateTime?
+  
+  createdAt     DateTime  @default(now())
+  
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum ContactStatus {
+  NEW
+  VIEWED
+  RESPONDED
+  CLOSED
+}
