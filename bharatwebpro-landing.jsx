@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Globe, Zap, Shield, Phone, Mail, MessageCircle, Check, Star, MapPin, TrendingUp, Users, BarChart3, ChevronDown, Play, ExternalLink, Menu, X, IndianRupee } from 'lucide-react';
+import { Boxes } from '@/components/ui/background-boxes';
 
 export default function BharatWebProLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -398,13 +399,12 @@ export default function BharatWebProLanding() {
       </nav>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 pb-20 px-4 overflow-hidden">
-        {/* Animated Blobs */}
-        <div className="blob blob-1"></div>
-        <div className="blob blob-2"></div>
-        <div className="blob blob-3"></div>
+      <section ref={heroRef} className="relative pt-32 pb-20 px-4 overflow-hidden bg-slate-900">
+        {/* Animated Background */}
+        <Boxes />
+        <div className="absolute inset-0 w-full h-full bg-slate-900 z-10 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
@@ -415,30 +415,30 @@ export default function BharatWebProLanding() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-5xl lg:text-7xl font-bold heading-font text-gray-900 leading-tight animate-fadeInUp stagger-1">
+              <h1 className="text-5xl lg:text-7xl font-bold heading-font text-white leading-tight animate-fadeInUp stagger-1">
                 Your Business
                 <span className="block gradient-text">Deserves a</span>
-                <span className="block">Professional Website</span>
+                <span className="block text-white">Professional Website</span>
               </h1>
 
               {/* Sub-headline */}
-              <p className="text-xl text-gray-600 leading-relaxed animate-fadeInUp stagger-2">
-                We find businesses without websites, create stunning sites in <span className="font-bold text-indigo-600">24 hours</span>, and handle everything for you. No coding needed.
+              <p className="text-xl text-gray-300 leading-relaxed animate-fadeInUp stagger-2">
+                We find businesses without websites, create stunning sites in <span className="font-bold text-indigo-400">24 hours</span>, and handle everything for you. No coding needed.
               </p>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 animate-fadeInUp stagger-3">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-indigo-600 counter-number">10K+</div>
-                  <div className="text-sm text-gray-600 mt-1">Websites Built</div>
+                  <div className="text-3xl font-bold text-indigo-400 counter-number">10K+</div>
+                  <div className="text-sm text-gray-300 mt-1">Websites Built</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-indigo-600 counter-number">24h</div>
-                  <div className="text-sm text-gray-600 mt-1">Delivery Time</div>
+                  <div className="text-3xl font-bold text-indigo-400 counter-number">24h</div>
+                  <div className="text-sm text-gray-300 mt-1">Delivery Time</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-indigo-600 counter-number">99%</div>
-                  <div className="text-sm text-gray-600 mt-1">Satisfaction</div>
+                  <div className="text-3xl font-bold text-indigo-400 counter-number">99%</div>
+                  <div className="text-sm text-gray-300 mt-1">Satisfaction</div>
                 </div>
               </div>
 
@@ -457,12 +457,12 @@ export default function BharatWebProLanding() {
               {/* Trust Indicators */}
               <div className="flex items-center space-x-6 animate-fadeInUp stagger-5">
                 <div className="flex items-center space-x-2">
-                  <Shield className="w-5 h-5 text-green-600" />
-                  <span className="text-sm text-gray-600">30-Day Money Back</span>
+                  <Shield className="w-5 h-5 text-green-400" />
+                  <span className="text-sm text-gray-300">30-Day Money Back</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Zap className="w-5 h-5 text-yellow-600" />
-                  <span className="text-sm text-gray-600">24hr Delivery</span>
+                  <Zap className="w-5 h-5 text-yellow-400" />
+                  <span className="text-sm text-gray-300">24hr Delivery</span>
                 </div>
               </div>
             </div>
@@ -561,13 +561,15 @@ export default function BharatWebProLanding() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 px-4 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+      <section id="how-it-works" className="py-20 px-4 bg-slate-900 relative overflow-hidden">
+        <Boxes />
+        <div className="absolute inset-0 w-full h-full bg-slate-900 z-10 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold heading-font text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold heading-font text-white mb-4">
               How It <span className="gradient-text">Works</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               From finding your business to launching your website - completely automated
             </p>
           </div>
@@ -587,8 +589,8 @@ export default function BharatWebProLanding() {
                       {index + 1}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -597,13 +599,15 @@ export default function BharatWebProLanding() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto">
+      <section id="pricing" className="py-20 px-4 bg-slate-900 relative overflow-hidden">
+        <Boxes />
+        <div className="absolute inset-0 w-full h-full bg-slate-900 z-10 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold heading-font text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold heading-font text-white mb-4">
               Simple <span className="gradient-text">Pricing</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
               Transparent pricing with no hidden costs. GST included.
             </p>
 
@@ -677,7 +681,7 @@ export default function BharatWebProLanding() {
 
           {/* Payment Methods */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-4 font-semibold">We Accept:</p>
+            <p className="text-gray-300 mb-4 font-semibold">We Accept:</p>
             <div className="flex flex-wrap justify-center items-center gap-6">
               <div className="px-6 py-3 bg-white rounded-lg shadow-md">UPI</div>
               <div className="px-6 py-3 bg-white rounded-lg shadow-md">Paytm</div>
@@ -691,13 +695,15 @@ export default function BharatWebProLanding() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section id="testimonials" className="py-20 px-4 bg-slate-900 relative overflow-hidden">
+        <Boxes />
+        <div className="absolute inset-0 w-full h-full bg-slate-900 z-10 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-20">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold heading-font text-gray-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold heading-font text-white mb-4">
               Success <span className="gradient-text">Stories</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Real businesses, real results from across India
             </p>
           </div>
