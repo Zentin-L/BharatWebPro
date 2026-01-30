@@ -41,7 +41,8 @@ export default function BharatWebProLanding() {
     { id: 'delhi', label: 'Delhi' },
     { id: 'bangalore', label: 'Bangalore' },
     { id: 'chennai', label: 'Chennai' },
-    { id: 'hyderabad', label: 'Hyderabad' }
+    { id: 'hyderabad', label: 'Hyderabad' },
+    { id: 'coimbatore', label: 'Coimbatore' }
   ];
 
   const pricingPlans = {
@@ -104,10 +105,10 @@ export default function BharatWebProLanding() {
 
   const testimonials = [
     {
-      name: 'Rajesh Kumar',
+      name: 'Dhirajj P',
       business: 'Kumar Sweets, Delhi',
       image: '👨‍💼',
-      quote: 'BharatWebPro transformed my sweet shop! Online orders increased by 300% in just 3 months.',
+      quote: 'FAAAAAAAAAAHHHHHH',
       rating: 5
     },
     {
@@ -253,9 +254,9 @@ export default function BharatWebProLanding() {
         }
 
         .glass-effect {
-          background: rgba(255, 255, 255, 0.7);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: rgba(15, 23, 42, 0.4);
+          backdrop-filter: blur(16px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hover-lift {
@@ -336,7 +337,7 @@ export default function BharatWebProLanding() {
       `}</style>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-200">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -346,21 +347,21 @@ export default function BharatWebProLanding() {
               </div>
               <div>
                 <h1 className="text-xl font-bold heading-font gradient-text">BharatWebPro</h1>
-                <p className="text-xs text-gray-600">हर व्यवसाय के लिए</p>
+                <p className="text-xs text-gray-400">हर व्यवसाय के लिए</p>
               </div>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#how-it-works" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">How It Works</a>
-              <a href="#pricing" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Pricing</a>
-              <a href="#templates" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Templates</a>
-              <a href="#testimonials" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Success Stories</a>
+              <a href="#how-it-works" className="text-gray-200 hover:text-indigo-400 transition-colors font-medium">How It Works</a>
+              <a href="#pricing" className="text-gray-200 hover:text-indigo-400 transition-colors font-medium">Pricing</a>
+              <a href="#templates" className="text-gray-200 hover:text-indigo-400 transition-colors font-medium">Templates</a>
+              <a href="#testimonials" className="text-gray-200 hover:text-indigo-400 transition-colors font-medium">Success Stories</a>
               
               {/* Language Toggle */}
               <button
                 onClick={() => setLanguage(language === 'en' ? 'hi' : 'en')}
-                className="px-3 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-sm font-medium"
+                className="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors text-sm font-medium backdrop-blur-sm"
               >
                 {language === 'en' ? 'हिंदी' : 'English'}
               </button>
@@ -375,7 +376,7 @@ export default function BharatWebProLanding() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+              className="md:hidden p-2 rounded-lg hover:bg-white/10 text-white"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -384,12 +385,12 @@ export default function BharatWebProLanding() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white">
+          <div className="md:hidden border-t border-white/10 bg-slate-900/50 backdrop-blur-xl">
             <div className="px-4 py-4 space-y-3">
-              <a href="#how-it-works" className="block py-2 text-gray-700 hover:text-indigo-600">How It Works</a>
-              <a href="#pricing" className="block py-2 text-gray-700 hover:text-indigo-600">Pricing</a>
-              <a href="#templates" className="block py-2 text-gray-700 hover:text-indigo-600">Templates</a>
-              <a href="#testimonials" className="block py-2 text-gray-700 hover:text-indigo-600">Success Stories</a>
+              <a href="#how-it-works" className="block py-2 text-gray-200 hover:text-indigo-400">How It Works</a>
+              <a href="#pricing" className="block py-2 text-gray-200 hover:text-indigo-400">Pricing</a>
+              <a href="#templates" className="block py-2 text-gray-200 hover:text-indigo-400">Templates</a>
+              <a href="#testimonials" className="block py-2 text-gray-200 hover:text-indigo-400">Success Stories</a>
               <button className="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold">
                 Start Free Trial
               </button>
@@ -469,27 +470,27 @@ export default function BharatWebProLanding() {
 
             {/* Right Content - Interactive Demo */}
             <div className="relative animate-fadeInUp stagger-3">
-              <div className="relative z-10 bg-white rounded-3xl shadow-2xl p-8 hover-lift">
+              <div className="relative z-10 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 hover-lift border border-white/20">
                 <div className="space-y-6">
-                  <h3 className="text-2xl font-bold heading-font text-gray-900">Try Live Demo</h3>
-                  <p className="text-gray-600">See your website come to life instantly</p>
+                  <h3 className="text-2xl font-bold heading-font text-white">Try Live Demo</h3>
+                  <p className="text-gray-300">See your website come to life instantly</p>
 
                   {/* Business Type Selection */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">Select Your Business</label>
+                    <label className="block text-sm font-semibold text-gray-200 mb-3">Select Your Business</label>
                     <div className="grid grid-cols-3 gap-3">
                       {businessTypes.map((type) => (
                         <button
                           key={type.id}
                           onClick={() => setSelectedBusiness(type.id)}
-                          className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                          className={`p-4 rounded-xl border-2 transition-all duration-300 backdrop-blur-sm ${
                             selectedBusiness === type.id
-                              ? 'border-indigo-600 bg-indigo-50 scale-105'
-                              : 'border-gray-200 hover:border-indigo-300'
+                              ? 'border-indigo-400 bg-indigo-500/30 scale-105'
+                              : 'border-white/20 bg-white/5 hover:border-indigo-400/50 hover:bg-white/10'
                           }`}
                         >
                           <div className="text-3xl mb-2">{type.icon}</div>
-                          <div className="text-xs font-medium text-gray-700">{type.label}</div>
+                          <div className="text-xs font-medium text-white">{type.label}</div>
                         </button>
                       ))}
                     </div>
@@ -497,16 +498,16 @@ export default function BharatWebProLanding() {
 
                   {/* City Selection */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-3">Your City</label>
+                    <label className="block text-sm font-semibold text-gray-200 mb-3">Your City</label>
                     <div className="grid grid-cols-2 gap-3">
                       {cities.map((city) => (
                         <button
                           key={city.id}
                           onClick={() => setSelectedCity(city.id)}
-                          className={`px-4 py-3 rounded-xl border-2 transition-all duration-300 text-sm font-medium ${
+                          className={`px-4 py-3 rounded-xl border-2 transition-all duration-300 text-sm font-medium backdrop-blur-sm ${
                             selectedCity === city.id
-                              ? 'border-indigo-600 bg-indigo-50'
-                              : 'border-gray-200 hover:border-indigo-300'
+                              ? 'border-indigo-400 bg-indigo-500/30 text-white'
+                              : 'border-white/20 bg-white/5 hover:border-indigo-400/50 hover:bg-white/10 text-gray-200'
                           }`}
                         >
                           {city.label}
@@ -536,11 +537,11 @@ export default function BharatWebProLanding() {
 
                   {/* Preview */}
                   {isGenerating && (
-                    <div className="bg-gray-100 rounded-xl p-8 animate-scaleIn">
+                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 animate-scaleIn">
                       <div className="space-y-3">
-                        <div className="h-4 bg-gray-300 rounded shimmer"></div>
-                        <div className="h-4 bg-gray-300 rounded shimmer w-3/4"></div>
-                        <div className="h-4 bg-gray-300 rounded shimmer w-1/2"></div>
+                        <div className="h-4 bg-white/20 rounded shimmer"></div>
+                        <div className="h-4 bg-white/20 rounded shimmer w-3/4"></div>
+                        <div className="h-4 bg-white/20 rounded shimmer w-1/2"></div>
                       </div>
                     </div>
                   )}
@@ -612,11 +613,11 @@ export default function BharatWebProLanding() {
             </p>
 
             {/* Pricing Toggle */}
-            <div className="inline-flex items-center bg-white rounded-full p-1 shadow-lg">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-xl rounded-full p-1 shadow-lg border border-white/20">
               <button
                 onClick={() => setActiveTab('basic')}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  activeTab === 'basic' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' : 'text-gray-700'
+                  activeTab === 'basic' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' : 'text-gray-300'
                 }`}
               >
                 One-Time
@@ -624,7 +625,7 @@ export default function BharatWebProLanding() {
               <button
                 onClick={() => setActiveTab('monthly')}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  activeTab === 'monthly' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' : 'text-gray-700'
+                  activeTab === 'monthly' ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white' : 'text-gray-300'
                 }`}
               >
                 Monthly
@@ -636,8 +637,8 @@ export default function BharatWebProLanding() {
             {Object.entries(pricingPlans).map(([key, plan], index) => (
               <div
                 key={key}
-                className={`relative bg-white rounded-3xl shadow-xl p-8 hover-lift card-3d animate-fadeInUp stagger-${index + 1} ${
-                  plan.popular ? 'ring-4 ring-amber-400 scale-105' : ''
+                className={`relative bg-white/10 backdrop-blur-xl rounded-3xl shadow-xl p-8 hover-lift card-3d animate-fadeInUp stagger-${index + 1} border ${
+                  plan.popular ? 'ring-4 ring-amber-400 scale-105 border-amber-400/30' : 'border-white/20'
                 }`}
               >
                 {plan.popular && (
@@ -647,12 +648,12 @@ export default function BharatWebProLanding() {
                 )}
 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                   <div className="flex items-baseline justify-center space-x-2">
-                    <IndianRupee className="w-6 h-6 text-gray-600" />
+                    <IndianRupee className="w-6 h-6 text-gray-300" />
                     <span className="text-5xl font-bold heading-font gradient-text">{plan.price}</span>
                   </div>
-                  <div className="text-sm text-gray-500 mt-2">
+                  <div className="text-sm text-gray-400 mt-2">
                     ₹{plan.gst} with GST
                   </div>
                 </div>
@@ -660,10 +661,10 @@ export default function BharatWebProLanding() {
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                        <Check className="w-3 h-3 text-green-600" />
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center mt-0.5">
+                        <Check className="w-3 h-3 text-green-400" />
                       </div>
-                      <span className="text-gray-700 text-sm">{feature}</span>
+                      <span className="text-gray-200 text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -671,7 +672,7 @@ export default function BharatWebProLanding() {
                 <button className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
                   plan.popular
                     ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg hover:scale-105'
-                    : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                    : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
                 }`}>
                   Get Started
                 </button>
@@ -683,12 +684,12 @@ export default function BharatWebProLanding() {
           <div className="mt-12 text-center">
             <p className="text-gray-300 mb-4 font-semibold">We Accept:</p>
             <div className="flex flex-wrap justify-center items-center gap-6">
-              <div className="px-6 py-3 bg-white rounded-lg shadow-md">UPI</div>
-              <div className="px-6 py-3 bg-white rounded-lg shadow-md">Paytm</div>
-              <div className="px-6 py-3 bg-white rounded-lg shadow-md">PhonePe</div>
-              <div className="px-6 py-3 bg-white rounded-lg shadow-md">Google Pay</div>
-              <div className="px-6 py-3 bg-white rounded-lg shadow-md">Net Banking</div>
-              <div className="px-6 py-3 bg-white rounded-lg shadow-md">Credit/Debit Cards</div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg shadow-md border border-white/20 text-white">UPI</div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg shadow-md border border-white/20 text-white">Paytm</div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg shadow-md border border-white/20 text-white">PhonePe</div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg shadow-md border border-white/20 text-white">Google Pay</div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg shadow-md border border-white/20 text-white">Net Banking</div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg shadow-md border border-white/20 text-white">Credit/Debit Cards</div>
             </div>
           </div>
         </div>
@@ -709,7 +710,7 @@ export default function BharatWebProLanding() {
           </div>
 
           <div className="relative max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-12 shadow-2xl">
+            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/20">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
@@ -725,12 +726,12 @@ export default function BharatWebProLanding() {
                       ))}
                     </div>
                   </div>
-                  <blockquote className="text-2xl text-gray-700 text-center mb-8 leading-relaxed italic">
+                  <blockquote className="text-2xl text-gray-200 text-center mb-8 leading-relaxed italic">
                     "{testimonial.quote}"
                   </blockquote>
                   <div className="text-center">
-                    <div className="font-bold text-gray-900">{testimonial.name}</div>
-                    <div className="text-gray-600">{testimonial.business}</div>
+                    <div className="font-bold text-white">{testimonial.name}</div>
+                    <div className="text-gray-300">{testimonial.business}</div>
                   </div>
                 </div>
               ))}
@@ -742,7 +743,7 @@ export default function BharatWebProLanding() {
                     key={index}
                     onClick={() => setActiveTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      activeTestimonial === index ? 'bg-indigo-600 w-8' : 'bg-gray-300'
+                      activeTestimonial === index ? 'bg-indigo-400 w-8' : 'bg-white/30'
                     }`}
                   />
                 ))}
