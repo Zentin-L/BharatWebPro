@@ -43,7 +43,7 @@ A complete full-stack Website-as-a-Service (WAAS) platform specifically designed
 Before you begin, ensure you have the following installed:
 
 - **Node.js** 18+ ([Download](https://nodejs.org/))
-- **PostgreSQL** 15+ ([Download](https://www.postgresql.org/download/))
+- **MongoDB Atlas account** (or local MongoDB instance) ([MongoDB Atlas](https://www.mongodb.com/atlas/database))
 - **Redis** (Optional, for queue management) ([Download](https://redis.io/download))
 - **Git** ([Download](https://git-scm.com/downloads))
 
@@ -70,11 +70,17 @@ Create a `.env` file in the root directory:
 cp .env.example .env
 ```
 
+Windows PowerShell alternative:
+
+```powershell
+Copy-Item .env.example .env
+```
+
 Edit `.env` and add your credentials:
 
 ```env
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/bharatwebpro"
+DATABASE_URL="mongodb+srv://<db_username>:<db_password>@<cluster>/<db_name>?retryWrites=true&w=majority"
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
@@ -98,14 +104,30 @@ GOOGLE_MAPS_API_KEY="your_google_maps_key"
 REDIS_URL="redis://localhost:6379"
 ```
 
+Minimum variables required to run locally:
+
+- `DATABASE_URL`
+- `NEXTAUTH_URL`
+- `NEXTAUTH_SECRET`
+
+Generate a secure `NEXTAUTH_SECRET`:
+
+```bash
+# Linux/macOS (OpenSSL)
+openssl rand -base64 32
+
+# Node.js (works on Windows/macOS/Linux)
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
+
 ### 4. Setup Database
 
 ```bash
 # Generate Prisma client
 npx prisma generate
 
-# Run database migrations
-npx prisma migrate dev
+# Sync schema to MongoDB
+npx prisma db push
 
 # Seed database (optional)
 npx prisma db seed
